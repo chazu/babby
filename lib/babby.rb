@@ -1,4 +1,4 @@
-#require "babby/version"
+require "babby/version"
 
 STATE_TYPE_MAP = {
   array: Array
@@ -27,8 +27,8 @@ module Babby
 
         if type == :array
           define_singleton_method name do |value| # define 'setter' for derived class - i.e. DSL 'setup' method a la attr_accessor
-            if not self.instance_variable_get  "@#{name}"
-              self.instance_variable_set "@#{name}", type ? state_type.new : nil
+            if not self.instance_variable_get "@#{name}"
+              self.instance_variable_set "@#{name}", state_type ? state_type.new : nil
             end
 
             self.instance_variable_get("@#{name}").push(value)  # Set the underlying class instance variable to the desired value
